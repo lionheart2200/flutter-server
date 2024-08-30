@@ -2,26 +2,26 @@ const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
   name: {
-    require: true,
+    required: true,
     type: String,
     trim : true,
   },
   email: {
-    require: true,
+    required: true,
     type: String,
     trim: true,
     validate: {
       validator: (value) => {
         const re =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  value.match(re);
+  return value.match(re);
       },
-      message: 'Your email is valid !'
+      message: 'Your email is not valid !',
     }
 
   },
   password: {
-    require: true,
+    required: true,
     type: String,
   },
   address: {
